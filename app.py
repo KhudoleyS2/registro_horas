@@ -17,7 +17,6 @@ def timedelta_remove_milliseconds(timedelta):
 @app.route('/')
 @app.route('/<_id_usuario>')
 def index(_id_usuario=None):
-
 	#Datos para crear los selects.
 	datos_usuario = func_query.query_usuarios()
 	datos_tipo_registro = func_query.query_tipos_registro()
@@ -28,6 +27,7 @@ def index(_id_usuario=None):
 	if _id_usuario is not None:
 		usuario = func_query.query_usuario_por_id(_id_usuario)
 		datos_registros_usuario = func_query.query_registros_por_id_usuario(_id_usuario)
+		datos_ultimo_registro_usuario = func_query.query_utlimo_registro_por_id_usuario(_id_usuario)
 
 		return render_template(
 			'index.html',
@@ -36,6 +36,7 @@ def index(_id_usuario=None):
 			datos_tipo_registro=datos_tipo_registro,
 			usuario=usuario,
 			datos_registros_usuario=datos_registros_usuario,
+			datos_ultimo_registro_usuario=datos_ultimo_registro_usuario,
 			)
 	else:
 
@@ -48,11 +49,16 @@ def index(_id_usuario=None):
 
 
 
-@app.route('/crear_registro/<id_usuario>/<_id_tipo_registro>')
-def crear_registro(id_usuario,_id_tipo_registro):
-	func_registro.comenzar_registro(id_usuario,_id_tipo_registro)
-	return redirect (url_for('index',id_usuario=id_usuario))
+@app.route('/crear_registro/<_id_usuario>/<_id_tipo_registro>')
+def crear_registro(_id_usuario,_id_tipo_registro):
+	func_registro.comenzar_registro(_id_usuario,_id_tipo_registro)
+	return redirect (url_for('index',_id_usuario=_id_usuario))
 
+
+@app.route('/cerrar_registro/<_id_usuario>')
+def cerrar_registro(_id_usuario):
+	func_registro.finalizar_registro(_id_usuario)
+	return redirect (url_for('index',_id_usuario=_id_usuario))
 
 
 

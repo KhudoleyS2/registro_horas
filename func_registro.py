@@ -16,9 +16,6 @@ def insertar_registro(id_usuario,_id_tipo_registro):
     )
 
 
-
-
-
 #Comenzar un nuevo registro________________________________________________________________________________________________________
 def comenzar_registro(id_usuario,_id_tipo_registro):
 
@@ -41,3 +38,27 @@ def comenzar_registro(id_usuario,_id_tipo_registro):
     else:
         
         insertar_registro(id_usuario,_id_tipo_registro)
+
+
+
+
+#Finalizar registro actual_______________________________________________________________________________________________________________
+def finalizar_registro(id_usuario):
+
+    #primero comprobar el ultimo regisatro del usuario.
+    ultimo_registro = func_query.query_utlimo_registro_por_id_usuario(id_usuario)
+
+    #comprobar si existe o no.
+    if ultimo_registro is not None:
+        
+        #comprobar si no tiene una fecha de final de registro.
+        if ultimo_registro['final_registro'] is None:
+
+            registros_collection.update_one(
+                {"_id":ultimo_registro["_id"]},
+                {"$set":{"final_registro":datetime.datetime.now()}}
+            )
+
+        #Feedback por consola de error.
+        else:
+            print ('El ultimo registro ya esta cerrado o no existe.')

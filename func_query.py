@@ -38,7 +38,5 @@ def query_utlimo_registro_por_id_usuario(id_usuario):
 
 if __name__=="__main__":
 
-    for i in query_registros_por_id_usuario("5ebbcf73b2f328ec8c533e2f"):
-        print (i)
     pass
         
