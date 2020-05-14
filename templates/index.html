@@ -20,9 +20,9 @@
     <!-- HEADER -->
     <header>
         <!-- DIV DROPDOWN SELECCIONAR USUARIO -->
-        <div class="dropdown">
+        <div class="dropdown" id="dropdown">
             <button class="dropbtn">{%if _id_usuario is none %}USUARIO{% else%}{{usuario.nombre}}{% endif %}</button>
-            <div class="dropdown-content">
+            <div class="dropdown-content" id="dropdown-content">
                 {% for usuario in datos_usuario%}
                 <a href="{{usuario._id}}">{{usuario.nombre}}</a>
                 {% endfor %}
@@ -100,7 +100,10 @@
     
 </body>
 
-<script src="{{url_for('static',filename='js/timedelta.js')}}"></script>
+<script src="{{url_for('static',filename='js/dropdown.js')}}"></script>
+
+<!-- <script src="{{url_for('static',filename='js/timedelta.js')}}"></script> -->
+
 
 
 </html>
