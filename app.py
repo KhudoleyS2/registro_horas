@@ -12,6 +12,18 @@ def timedelta_remove_milliseconds(timedelta):
 	str_timedelta = str(timedelta).split(".")[0]
 	return str_timedelta
 
+#ERROR HANDLER________________________________________________
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html'), 404
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('error.html'), 500
+
+
+
+
 
 
 @app.route('/')
@@ -64,4 +76,4 @@ def cerrar_registro(_id_usuario):
 
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=False)
