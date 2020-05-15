@@ -22,10 +22,9 @@
 .icono{
     max-height: 50px; 
     margin-top: 50px;
-
+    animation: spin 3s linear infinite;
 }
 
-.icono:hover{
-    transition: 0.9s;
-    transform: rotateZ(180deg);
-}
+
+
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

@@ -1,4 +1,4 @@
 login_data = {
-    'user':'<User>',
-    'password':'<Password>'
+    'user':'KhudoleyS2',
+    'password':'Uhkolcv1-'
 }

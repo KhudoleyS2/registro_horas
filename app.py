@@ -24,7 +24,7 @@ def page_not_found(e):
 
 
 
-
+#MANEJADOR DE RUTAS____________________________________________
 
 @app.route('/')
 @app.route('/<_id_usuario>')
@@ -60,7 +60,12 @@ def index(_id_usuario=None):
 			)
 
 
+@app.route('/error')
+def template_error():
+	return render_template('error.html')
 
+
+#PSEUDO API REST________________________________________________________________-
 @app.route('/crear_registro/<_id_usuario>/<_id_tipo_registro>')
 def crear_registro(_id_usuario,_id_tipo_registro):
 	func_registro.comenzar_registro(_id_usuario,_id_tipo_registro)
@@ -76,4 +81,4 @@ def cerrar_registro(_id_usuario):
 
 
 if __name__=="__main__":
-    app.run(debug=False)
+    app.run(debug=True)

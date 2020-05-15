@@ -33,6 +33,16 @@ def query_registros_por_id_usuario(id_usuario):
     return data
 
 
+def query_registros_por_id_usuario_agrupado_por_fecha(id_usuario):
+    data = registros_collection.aggregate([
+        {"$match":{"_id_usuario":ObjectId(id_usuario)}},
+        #{"$group":{"_id_date":{"$add":{"$dayOfYear" : "$comienzo_registro"}}}},
+        #{"$group":{"_id":{"$dayOfYear":"$comienzo_registro"},"duracion_registro":{"$sum":1}}},
+        {"$subtract":["$final_registro","$comienzo_registro"]}
+        
+    ])
+    return data
+
 def query_utlimo_registro_por_id_usuario(id_usuario):
     ultimo_registro = registros_collection.aggregate([
        {"$match":{"_id_usuario":ObjectId(id_usuario)}},
@@ -47,6 +57,7 @@ def query_utlimo_registro_por_id_usuario(id_usuario):
     return ultimo_registro
 
 if __name__=="__main__":
-
+    for i in query_registros_por_id_usuario_agrupado_por_fecha('5ebbcf73b2f328ec8c533e26'):
+        print (i)
     pass
         
