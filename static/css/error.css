@@ -15,4 +15,17 @@
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
-  }
+}
+
+
+
+.icono{
+    max-height: 50px; 
+    margin-top: 50px;
+
+}
+
+.icono:hover{
+    transition: 0.9s;
+    transform: rotateZ(180deg);
+}
